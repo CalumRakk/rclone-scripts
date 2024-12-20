@@ -1,0 +1,5 @@
+*.rar
+config/*
+!config/leo.txt
+sync_log/
+*.py

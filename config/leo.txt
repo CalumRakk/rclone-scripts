@@ -1,0 +1,3 @@
+LOCAL_DIR=D:\github Leo
+REMOTE_DIR=leo:/rclone/github Leo
+BACKUP_DIR=leo:/rclone/backup
