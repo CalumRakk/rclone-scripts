@@ -1,0 +1,5 @@
+LOCAL_DIR=D:\github Leo
+REMOTE_DIR=leo:/rclone/github Leo
+BACKUP_DIR=leo:/rclone/backup
+PATH_RCLONE=C:\rclone-v1.68.2-windows-amd64\rclone.exe
+PATH_EXCLUDE_FILE=excludes.txt

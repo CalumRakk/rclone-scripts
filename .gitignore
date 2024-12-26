@@ -1,5 +1,7 @@
 *.rar
-config/*
-!config/leo.txt
+tasks/*
+!tasks/leo.txt
 sync_log/
-*.py
+*.log
+archive/
+logs/
