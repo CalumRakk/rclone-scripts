@@ -1,6 +1,6 @@
 # Scripts de Sincronización de Carpetas Específicas con Rclone
 
-Este script de Python utiliza [Rclone](https://rclone.org/) para sincronizar directorios locales y remotos, permitiendo realizar copias de seguridad automáticas.
+Este script de Python automatiza la sincronización de carpetas entre ubicaciones locales y remotas utilizando [Rclone](https://rclone.org/). Permite definir múltiples tareas de sincronización a través de archivos de configuración simples, facilitando la gestión de copias de seguridad y la sincronización de datos.
 
 La ventaja de usar este script es la facilidad de configurar multiples "tareas de sincronizacion" a traves de archivos de texto simple. Este Script lee y ejecuta todas las tareas en lote desde el directorio `tasks`
 
@@ -44,7 +44,12 @@ Antes de ejecutar el script, se debe tener lo siguiente configurado:
    - **`path_log_file`**: Ruta del archivo de log generado por Rclone. Este archivo guarda detalles sobre la ejecución de la tarea.  
      Ejemplo: `C:\logs\rclone.log`.
    - **`path_exclude_file`**: (Opcional) Archivo que contiene patrones para excluir archivos o carpetas durante la sincronización.  
-     Ejemplo: `config\excludes.txt`.
+     Ejemplo: `config\excludes.txt`
+     ```text
+     *.tmp
+     /CarpetaTemporal/*
+     archivo_a_excluir.txt
+     ```
 
    **Ejemplo de un archivo de tarea de sincronizacion Completo**
 
@@ -60,25 +65,55 @@ Antes de ejecutar el script, se debe tener lo siguiente configurado:
 
 ## Cómo usar el script
 
-1. **Ejecutar manualmente**  
-   Abre una terminal, navega a la carpeta donde está el script de Python `run.py` y ejecuta:
+1.  **Ejecutar manualmente**
 
-   ```cmd
-   python run.py
-   ```
+    Abre una terminal, navega a la carpeta donde está el script de Python \`run.py\` y ejecuta:
 
-   o especifica especifica la carpeta donde estan las tareas :
+    ```cmd
+    python run.py [--tasks-dir <ruta_del_directorio_de_tareas>]
+    ```
 
-   ```cmd
-   python run.py --tasks-dir <ruta_del_directorio_de_tareas>
-   ```
+    Si no se especifica \`--tasks-dir\`, el script buscará los archivos de configuración en el directorio \`tasks\` ubicado en el mismo directorio que el script.
 
-2. **Configurar como Tarea Programada en Windows**  
-   Si deseas que el script se ejecute automáticamente en intervalos regulares, puedes configurarlo como una tarea en el Programador de Tareas de Windows:
-   - Abre el **Programador de Tareas** (Task Scheduler).
-   - Crea una nueva tarea básica y selecciona **Iniciar un programa** como acción.
-   - Indica la ruta del script `python <ruta_completa_del_script>`.
-   - Define la frecuencia y el horario de ejecución según tus necesidades.
+    Si se produce algún error durante la ejecución, revisa los archivos de log (\`script.log\` y el log específico de Rclone para la tarea correspondiente) para obtener más información.
+
+2.  **Configurar como Tarea Programada en Windows**  
+    Si deseas que el script se ejecute automáticamente en intervalos regulares, puedes configurarlo como una tarea en el Programador de Tareas de Windows:
+
+    - Abre el **Programador de Tareas** (Task Scheduler).
+    - Crea una nueva tarea básica y selecciona **Iniciar un programa** como acción.
+    - Indica la ruta del script `python <ruta_completa_del_script>`.
+    - Define la frecuencia y el horario de ejecución según tus necesidades.
+
+3.  **Ejecución Automática del script usando el Programador de Tareas de Windows**
+
+    Para ejecutar el script automáticamente de forma regular:
+
+    1.  Abre el **Programador de Tareas**.
+
+    2.  Haz clic en "Crear tarea básica...".
+
+    3.  Ponle un nombre (ej. "Sincronización Rclone") y una descripción.
+
+    4.  Elige la frecuencia (diaria, semanal, etc.).
+
+    5.  Selecciona "Iniciar un programa".
+
+    6.  **Configura el programa y los argumentos:**
+
+        - **Si Python _está_ en las variables del sistema (PATH):**
+
+          - **Programa/script:** `python` (o `py`)
+          - **Agregar argumentos:** `D:\scripts\rclone_sync\run.py`
+
+        - **Si Python _NO está_ en las variables del sistema o usas un entorno virtual específico:**
+
+          - **Programa/script:** `C:\ruta\completa\a\python.exe` (ej. `C:\Python39\python.exe` o la de tu entorno virtual)
+          - **Agregar argumentos:** `D:\scripts\rclone_sync\run.py`
+
+          Puedes encontrar la ruta completa a Python ejecutando `where python` en la terminal.
+
+    7.  Revisa la configuración y finaliza. Revisa los logs (`script.log` y los de Rclone) si hay problemas.
 
 ## Notas sobre los logs
 

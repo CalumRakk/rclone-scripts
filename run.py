@@ -111,6 +111,7 @@ for file in Path(tasks_dir).glob("*.txt"):
             command.append(f"--exclude-from")
             command.append(str(config.path_exclude_file))
 
+        logger.info(f"Ejecutando comando: {' '.join(command)}")
         subprocess.run(
             command,
             shell=True,
