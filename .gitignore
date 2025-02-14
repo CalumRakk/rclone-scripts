@@ -1,7 +1,12 @@
 *.rar
 tasks/*
-!tasks/leo.txt
+!tasks/my-task.txt
 sync_log/
 *.log
 archive/
 logs/
+*.egg-info
+build/
+run.py
+__pycache__
+script.py

@@ -4,7 +4,7 @@ Este script de Python automatiza la sincronización de carpetas entre ubicacione
 
 La ventaja de usar este script es la facilidad de configurar multiples "tareas de sincronizacion" a traves de archivos de texto simple. Este Script lee y ejecuta todas las tareas en lote desde el directorio `tasks`
 
-Entiendase que una "tarea de sincronización" es un archivo que contiene la configuración específica para sincronizar un directorio local con un remoto utilizando Rclone
+<!-- Entiendase que una "tarea de sincronización" es un archivo que contiene la configuración específica para sincronizar un directorio local con un remoto utilizando Rclone -->
 
 ## Requisitos Previos
 
@@ -18,7 +18,7 @@ Antes de ejecutar el script, se debe tener lo siguiente configurado:
 2. **Autenticación con Google Drive:**
 
    - Ejecuta `rclone.exe config` desde la línea de comandos (CMD) para configurar tu cuenta de Google Drive. Sigue las instrucciones para autenticar tu cuenta.
-   - Asegúrate de completar el proceso y recuerda el nombre remote especificado, ya que necesitarás usar este nombre más adelante.
+   - Asegúrate de completar el proceso y recuerda el nombre del remoto especificado, ya que necesitarás usar este nombre en el siguiente paso.
 
 3. **Configurar archivos de "tareas de sincronizacion"**
    Crea un archivo `.txt` para cada tarea en la carpeta de tareas (por defecto, `tasks`) con la siguiente configuración en formato clave-valor:
@@ -61,9 +61,9 @@ Antes de ejecutar el script, se debe tener lo siguiente configurado:
    path_exclude_file=config\excludes.txt
    ```
 
-   Este ejemplo realizará una copia de seguridad de los archivos de la carpeta local `D:\github Leo`, utilizando la configuración de rclone llamada `leo`. Los archivos se sincronizarán en una carpeta de Google Drive llamada `rclone/github Leo`. Los archivos dentro de la carpeta local especificados en el archivo `path_exclude_file` no serán sincronizados. Además, los archivos eliminados localmente después de ejecutar el script serán movidos a una carpeta remota denominada `rclone/backup` durante la siguiente ejecución.
+   Este ejemplo realizará una copia de seguridad de los archivos de la carpeta local `D:\github Leo`, utilizando el nombre del remoto de rclone llamada `leo`. Los archivos se sincronizarán en una carpeta de Google Drive llamada `rclone/github Leo`. Los archivos dentro de la carpeta local especificados en el archivo `path_exclude_file` no serán sincronizados. Además, los archivos eliminados localmente después de ejecutar el script serán movidos a una carpeta remota denominada `rclone/backup` durante la siguiente ejecución.
 
-## Cómo usar el script
+<!-- ## Cómo usar el script
 
 1.  **Ejecutar manualmente**
 
@@ -77,7 +77,7 @@ Antes de ejecutar el script, se debe tener lo siguiente configurado:
 
     Si se produce algún error durante la ejecución, revisa los archivos de log (\`script.log\` y el log específico de Rclone para la tarea correspondiente) para obtener más información.
 
-2.  **Configurar como Tarea Programada en Windows**  
+2.  **Configurar como Tarea Programada en Windows**
     Si deseas que el script se ejecute automáticamente en intervalos regulares, puedes configurarlo como una tarea en el Programador de Tareas de Windows:
 
     - Abre el **Programador de Tareas** (Task Scheduler).
@@ -120,4 +120,4 @@ Antes de ejecutar el script, se debe tener lo siguiente configurado:
 1. **Log del script (`script.log`)**
    - Registra las actividades y errores generales del script en Python.
 2. **Log de Rclone (`path_log_file`)**
-   - Contiene información detallada de cada tarea ejecutada por Rclone.
+   - Contiene información detallada de cada tarea ejecutada por Rclone. -->
