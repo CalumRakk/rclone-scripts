@@ -76,7 +76,7 @@ def main(task: Task):
             command.append(task.backup_dir)
         if task.extra_command is not None:
             logger.info(f"Usando los comandos extras: {task.extra_command}")
-            comms = task.extra_command.split(",")
+            comms = task.extra_command.strip().split(",")
             for i in comms:
                 com, value = i.split()
                 command.append(com)
